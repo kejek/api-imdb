@@ -11,7 +11,10 @@ class Search extends Component
 {
     public $search;
     public $response = [];
-    public $users;
+
+    protected $rules = [
+        'search' => 'required',
+    ];
 
     public function render(): View {
         return view('livewire.search');

@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/welcome', function() {
-    return view('welcome');
-})->name('welcome');
 
 Route::middleware([
     'auth:sanctum',
