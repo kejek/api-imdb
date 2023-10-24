@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImdbApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/welcome', function() {
+    return view('welcome');
+})->name('welcome');
 
 Route::middleware([
     'auth:sanctum',
@@ -24,4 +28,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/search', function () {
+        return view('livewire.search');
+    })->name('search');
 });
