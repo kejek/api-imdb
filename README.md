@@ -10,3 +10,12 @@
 ## About This Project
 
 This project is used to show authentication using Jetstream, as well as being able to query the IMDB API, which lets you search for movies and actors.
+
+To use this application:
+
+-   Easiest with using Laravel Herd
+-   Copy the .env.example and rename it .env
+-   Update the .env to the correct configuration
+-   access the site at http://api-imdb.test/
+-   You can register at http://api-imdb.test/register
+-   then you can login and run the search queries!
