@@ -19,3 +19,5 @@ To use this application:
 -   access the site at http://api-imdb.test/
 -   You can register at http://api-imdb.test/register
 -   then you can login and run the search queries!
+
+Thanks!
