@@ -17,7 +17,7 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         "APP_URL": "https://api-imdb-kejek-matt-goldsworthys-projects.vercel.app/",
         "ASSET_URL": "https://api-imdb-kejek-matt-goldsworthys-projects.vercel.app/",
 
