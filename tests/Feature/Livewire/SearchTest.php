@@ -19,16 +19,10 @@ class SearchTest extends TestCase
     /** @test */
     public function has_data_passed_correctly()
     {
-        Livewire::test(Search::class)
-            ->set('search', 'bar')
-            ->assertSet('search', 'bar');
-    }
+        Http::preventStrayRequests();
 
-    /** @test */
-    public function has_search_results()
-    {
         Http::fake([
-            'https://movie-database-alternative.p.rapidapi.com/?s*' => Http::response([
+            'https://testurl.com/?s=*' => Http::response([
                 'Search' => [
                     [
                         'Title' => 'Test Movie',
@@ -41,12 +35,45 @@ class SearchTest extends TestCase
                 'totalResults' => '1',
                 'Response' => 'True',
             ]),
-            'https://movie-database-alternative.p.rapidapi.com/?t*' => Http::response([
-                [
-                    'Plot' => 'This is a test',
-                    'Directory' => 'Cool Dude',
-                    'Released' => 'May 1st 2019',
+            'https://testurl.com/?i=*' => Http::response([
+                'Plot' => 'This is a test',
+                'Director' => 'Cool Dude',
+                'Released' => 'May 1st 2019',
+                'totalResults' => '1',
+                'Response' => 'True',
+            ]),
+        ]);
+
+        Livewire::test(Search::class)
+            ->set('search', 'bar')
+            ->assertSet('search', 'bar');
+    }
+
+    /** @test */
+    public function has_search_results()
+    {
+        Http::preventStrayRequests();
+
+        Http::fake([
+            'https://testurl.com/?s=*' => Http::response([
+                'Search' => [
+                    [
+                        'Title' => 'Test Movie',
+                        'Year' => '2019',
+                        'imdbID' => 'tt4154796',
+                        'Type' => 'movie',
+                        'Poster' => 'https://www.fake.com/fake.jpg',
+                    ],
                 ],
+                'totalResults' => '1',
+                'Response' => 'True',
+            ]),
+            'https://testurl.com/?i=*' => Http::response([
+
+                'Plot' => 'This is a test',
+                'Director' => 'Cool Dude',
+                'Released' => 'May 1st 2019',
+
                 'totalResults' => '1',
                 'Response' => 'True',
             ]),
