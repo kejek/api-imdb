@@ -9,7 +9,7 @@
 
 ## About This Project
 
-This project is used to show authentication using Jetstream, as well as being able to query the IMDB API, which lets you search for movies and actors.
+This project is used to show authentication using Jetstream, as well as being able to query the IMDB API, which lets you search for movies.
 
 To use this application:
 
