@@ -31,11 +31,10 @@
     <div class="grid gap-4 grid-cols-4 py-4">
         @if (count($response))
             @foreach ($response as $data)
-                <div class="cursor-pointer flex flex-col rounded-md border-2 border-green-900">
+                <div class="cursor-pointer flex flex-col rounded-md border-2">
                     <!-- Article -->
-                    <article class="mt-auto">
-                        <img src="{{ $data['Poster'] }}" alt="poster"
-                            style="margin-left: auto; margin-right: auto;" />
+                    <article>
+                        <img src="{{ $data['Poster'] }}" alt="poster" class="ml-auto mr-auto" />
                         <header>
                             <h1 class="text-lg p-2">
                                 <p class="font-bold">
