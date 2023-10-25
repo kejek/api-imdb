@@ -50,7 +50,7 @@ jobs:
         run: npm ci
 
       - name: "run blade formatter"
-        run: "./node_modules/.bin/blade-formatter \"./resources/**/*.blade.php\" -c -d"
+        run: "./node_modules/.bin/blade-formatter \"resources/**/*.blade.php\" -c -d"
   phpstan:
     name: "run phpstan"
     runs-on: ubuntu-latest
