@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ImdbApiController;
 use Illuminate\Support\Facades\Route;
 
 /*

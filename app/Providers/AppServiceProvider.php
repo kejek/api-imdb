@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        if(app()->environment() !== 'local') {
+        if (app()->environment() !== 'local') {
             URL::forceScheme('https');
         }
     }

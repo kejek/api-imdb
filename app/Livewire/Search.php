@@ -9,16 +9,21 @@ use Livewire\Component;
 class Search extends Component
 {
     public string $search;
+
     public array $response;
+
     public string $apiHost = '';
+
     public array $headers = [];
+
     public bool $hasSearched = false;
 
     protected $rules = [
         'search' => 'required',
     ];
 
-    public function mount($host = null, $headers = null): void {
+    public function mount($host = null, $headers = null): void
+    {
         $this->apiHost = 'https://'.env('RAPID_API_HOST');
         $this->headers = [
             'X-RapidAPI-Host' => env('RAPID_API_HOST'),
@@ -26,18 +31,20 @@ class Search extends Component
         ];
     }
 
-    public function render(): View {
+    public function render(): View
+    {
         return view('livewire.search');
     }
 
-    public function updatedSearch(): void {
-        if(!empty($this->search)) {
+    public function updatedSearch(): void
+    {
+        if (! empty($this->search)) {
             $searchResults = $this->searchWithTerm();
             $results = [];
             $this->hasSearched = true;
 
-            if(array_key_exists('Search', $searchResults)) {
-                foreach($searchResults['Search'] as $item) {
+            if (array_key_exists('Search', $searchResults)) {
+                foreach ($searchResults['Search'] as $item) {
                     $details = $this->getMoreDetails($item['imdbID']);
                     $item['Plot'] = $details['Plot'];
                     $item['Released'] = $details['Released'];
@@ -50,13 +57,15 @@ class Search extends Component
         }
     }
 
-    private function searchWithTerm(): array {
+    private function searchWithTerm(): array
+    {
         return Http::withHeaders($this->headers)
-            ->get($this->apiHost .'/?s='. $this->search. '&r=json')->json();
+            ->get($this->apiHost.'/?s='.$this->search.'&r=json')->json();
     }
 
-    private function getMoreDetails(string $id): array {
+    private function getMoreDetails(string $id): array
+    {
         return Http::withHeaders($this->headers)
-            ->get($this->apiHost .'/?i='. $id .'&r=json')->json();
+            ->get($this->apiHost.'/?i='.$id.'&r=json')->json();
     }
 }
