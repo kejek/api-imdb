@@ -128,7 +128,7 @@ jobs:
         run: composer install --prefer-dist
 
       - name: "copy .env.example to .env"
-        run: cp .env.example .env
+        run: cp .env.testing .env
 
       - name: "set the application key"
         run: php artisan key:generate
