@@ -42,14 +42,14 @@ class SearchTest extends TestCase
                 'Response' => 'True',
             ]),
             'https://movie-database-alternative.p.rapidapi.com/?t*' => Http::response([
-                    [
-                        'Plot' => 'This is a test',
-                        'Directory' => 'Cool Dude',
-                        'Released' => 'May 1st 2019'
-                    ],
+                [
+                    'Plot' => 'This is a test',
+                    'Directory' => 'Cool Dude',
+                    'Released' => 'May 1st 2019',
+                ],
                 'totalResults' => '1',
                 'Response' => 'True',
-            ])
+            ]),
         ]);
 
         Livewire::test(Search::class)
