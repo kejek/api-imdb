@@ -50,7 +50,7 @@ jobs:
         run: npm ci
 
       - name: "run blade formatter"
-        run: "./node_modules/.bin/blade-formatter \"./resources/**/*.blade.php\" -c -d"
+        run: "./node_modules/.bin/blade-formatter \"resources/**/*.blade.php\" -c -d"
   phpstan:
     name: "run phpstan"
     runs-on: ubuntu-latest
@@ -84,6 +84,24 @@ jobs:
   tests:
     name: "run tests"
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres
+
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: "checkout repository"
         uses: actions/checkout@v3
@@ -110,7 +128,7 @@ jobs:
         run: composer install --prefer-dist
 
       - name: "copy .env.example to .env"
-        run: cp .env.example .env
+        run: cp .env.testing .env
 
       - name: "set the application key"
         run: php artisan key:generate

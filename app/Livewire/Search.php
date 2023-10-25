@@ -59,13 +59,19 @@ class Search extends Component
 
     private function searchWithTerm(): array
     {
-        return Http::withHeaders($this->headers)
-            ->get($this->apiHost.'/?s='.$this->search.'&r=json')->json();
+        $searchUrl = $this->apiHost.'/?s='.$this->search.'&r=json';
+
+        $result = Http::withHeaders($this->headers)
+            ->get($searchUrl)->json();
+
+        return $result;
     }
 
     private function getMoreDetails(string $id): array
     {
+        $searchUrl = $this->apiHost.'/?i='.$id.'&r=json';
+
         return Http::withHeaders($this->headers)
-            ->get($this->apiHost.'/?i='.$id.'&r=json')->json();
+            ->get($searchUrl)->json();
     }
 }

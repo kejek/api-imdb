@@ -12,3 +12,6 @@ parameters:
         - tests/
 
     level: 1
+
+    ignoreErrors:
+        - '#Call to static method factory\(\) on an unknown class App\\Models\\Team#'
